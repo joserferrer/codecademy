@@ -55,9 +55,9 @@ def cho_han(guess, bet):
 		print("Let's play Cho Han!")
 		print("You guessed " + guess + "!")
 	if dice_result % 2 == 1:
-		print("The dice rolls resulted as " + str(dice_result) + "!" + " An Odd Number!")
+		print("The dice rolls resulted as " + str(dice_result) + "!" + " An Odd number!")
 	elif dice_result % 2 == 0:
-		print("The dice rolls resulted as " + str(dice_result) + "!" + " An Even Number!")
+		print("The dice rolls resulted as " + str(dice_result) + "!" + " An Even number!")
 	if (guess == "Odd" and dice_result % 2 == 1) or (guess == "Even" and dice_result % 2 == 0):
 		money += bet
 		print("You have won $" + str(bet) + "!" )
@@ -84,7 +84,7 @@ def higher_card(bet):
 	if bet > money:
 		print("Sorry, your bet amount exceeds the money you currently have")
 		return 0
-	print("Let's draw a card!")
+		print("Let's draw a card!")
 	if player == computer:
 		print("You and the computer selected the same number " + str(player) + "! It's a tie!")
 		return 0
@@ -102,13 +102,68 @@ higher_card(10)
 
 #roulette function
 
+def roulette(guess, bet):
+	result = random.randint(0, 37)
+	global money
+	if guess == "Even" or guess == "Odd":
+		print("Let's play roulette! You placed your bet on " + guess + "!")
+	elif guess < 0:
+		print('Please make sure your bets are either on "Even", "Odd" or on Numbers 0 - 36!')
+		return 0
+	elif guess >= 37:
+		print('Please make sure your bets are either on "Even", "Odd" or on Numbers 0 - 36!')
+		return 0
+	else:
+		print("Let's play roulette! You placed your bet on " + str(guess) + "!")
+	if bet <= 0:
+		print("Sorry, your bet must be more than $1 dollar")
+		return 0
+	if bet > money:
+		print("Sorry, your bet amount exceeds the money you currently have")
+		return 0
+	if result == 37:
+		money -= bet
+		print("The dice landed on 00!")
+		print("You have lost $" + str(bet) + "!" )
+		print("Your total money pool is down $" + str(money) + " to use on more bets!")
+		return 0
+	if (guess == "Even" and result % 2 == 0 and result != 0):
+		money += bet
+		print("The dice landed on " + str(result) + "! An Even number!")
+		print("You have won $" + str(bet) + "! Your total money pool is now $" + str(money) + " to use on more bets!")
+	elif (guess == "Odd" and result % 2 == 1 and result != 0):
+		money += bet
+		print("The dice landed on " + str(result) + "! An Odd number!")
+		print("You have won $" + str(bet) + "! Your total money pool is now $" + str(money) + " to use on more bets!")
+	elif guess == result:
+		money += (bet * 35)
+		print("The dice landed on " + str(result) + "! This matches your guess of " + str(guess) + "!")
+		print("You have won $" + str(bet) + "! Your total money pool is now $" + str(money) + " to use on more bets!")
+	else:
+		money -= bet
+		print("You've put a bet on the dice landing on " + str(guess) + " but it landed on " + str(result) + "!")
+		print("You have lost $" + str(bet) + "!" )
+		print("Your total money pool is down $" + str(money) + " to use on more bets!")
 
 
 
+#roulette callouts
+roulette(36, 20)
+#will return an error saying guess is not 0-36
+roulette(37, 20)
+#will return an error saying guess is not 0-36
+roulette(37, 20)
 
 
+def test(bet):
+  if (bet == "Odd" or bet == "Even") or (bet >= 0 and bet <= 10):
+    print("Let's Play")
+  else:
+    print("Must be Odd, Even or between 0 - 10")
+    return 0
 
-
-
+test("Odd")
+test(5)
+test(-1)
 
 
