@@ -1,4 +1,4 @@
-import random
+kimport random
 
 money = 100
 
@@ -72,9 +72,36 @@ cho_han("Odd", 200)
 cho_han("Even", 20)
 
 
-#deck of cards function
+#higher card function
 
-def deck_of_cards(guess, bet):
+def higher_card(bet):
+	player = random.randint(1,10)
+	computer = random.randint(1,10)
+	global money
+	if bet <= 0:
+		print("Sorry, your bet must be more than $1 dollar")
+		return 0
+	if bet > money:
+		print("Sorry, your bet amount exceeds the money you currently have")
+		return 0
+	print("Let's draw a card!")
+	if player == computer:
+		print("You and the computer selected the same number " + str(player) + "! It's a tie!")
+		return 0
+	if player >= computer:
+		money += bet
+		print("You have drawn card #" + str(player) + " while the computer has draw card #" + str(computer) + "! Player wins $" + str(bet) + "! Your total money pool is now $" + str(money) + " to use on more bets.")
+	elif computer >= player:
+		money -= bet
+		print("The computer has drawn card #" + str(computer) + " while you have drawn #" + str(player) + "! Computer wins! You have lost $" + str(bet) + "! Your total money pool is now $" + str(money) + " to use on more bets.")
+
+#higher card callouts
+higher_card(20)
+higher_card(10)
+
+
+#roulette function
+
 
 
 
