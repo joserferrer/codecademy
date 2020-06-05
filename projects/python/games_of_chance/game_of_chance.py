@@ -74,6 +74,7 @@ cho_han("Even", 20)
 
 #deck of cards function
 
+def deck_of_cards(guess, bet):
 
 
 
