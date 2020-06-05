@@ -111,6 +111,7 @@ def roulette(guess, bet):
 		print('Please make sure your bets are either on "Even", "Odd" or on Numbers 0 - 36!')
 		return 0
 	elif guess >= 37:
+
 		print('Please make sure your bets are either on "Even", "Odd" or on Numbers 0 - 36!')
 		return 0
 	else:
@@ -165,5 +166,8 @@ def test(bet):
 test("Odd")
 test(5)
 test(-1)
+
+
+
 
 
