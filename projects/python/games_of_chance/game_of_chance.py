@@ -1,4 +1,4 @@
-kimport random
+import random
 
 money = 100
 
@@ -105,17 +105,13 @@ higher_card(10)
 def roulette(guess, bet):
 	result = random.randint(0, 37)
 	global money
-	if guess == "Even" or guess == "Odd":
-		print("Let's play roulette! You placed your bet on " + guess + "!")
-	elif guess < 0:
-		print('Please make sure your bets are either on "Even", "Odd" or on Numbers 0 - 36!')
-		return 0
-	elif guess >= 37:
-
-		print('Please make sure your bets are either on "Even", "Odd" or on Numbers 0 - 36!')
-		return 0
-	else:
+	if isinstance(guess, str) and (guess == "Odd" or guess == "Even"):
 		print("Let's play roulette! You placed your bet on " + str(guess) + "!")
+	elif isinstance(guess, int) and (bet >= 0 and bet <= 36):
+		print("Let's play roulette! You placed your bet on " + str(guess) + "!")
+	else:
+		print('Please make sure your bets are either on "Even", "Odd" or on Numbers 0 - 36!')
+		return 0
 	if bet <= 0:
 		print("Sorry, your bet must be more than $1 dollar")
 		return 0
@@ -149,25 +145,15 @@ def roulette(guess, bet):
 
 
 #roulette callouts
+roulette("Odd", 20)
 roulette(36, 20)
-#will return an error saying guess is not 0-36
-roulette(37, 20)
-#will return an error saying guess is not 0-36
 roulette(37, 20)
 
-
-def test(bet):
-  if (bet == "Odd" or bet == "Even") or (bet >= 0 and bet <= 10):
-    print("Let's Play")
-  else:
-    print("Must be Odd, Even or between 0 - 10")
-    return 0
-
-test("Odd")
-test(5)
-test(-1)
-
-
-
-
-
+#roulette guess function checker experiment using lists
+#def test(bet):
+#	allowed_bets = set(["Odd", "Even"] + list(range(11)))
+#		if bet in allowed_bets:
+#			print("Let's Play")
+#		else:
+#			print("Must be Odd, Even or between 0 - 10")
+#			return 0
